@@ -18,6 +18,7 @@ class Spell {
     this.requiresLineOfSight = requiresLineOfSight;
     this.isArea = isArea;
     this.areaTemplate = areaTemplate || null;
+    this.currentTile = undefined;
   }
   
   addFunction(fn) {
@@ -47,7 +48,15 @@ class Spell {
 
   // conditions should attach to an entity and be queried frequently whenever actions occur that could trigger them
   // such as start of turn, when casting a spell, when moving, end of turn
+
+  // area templates should be functions that calculate an area based off the target position
 }
+
+const burstTemplate = (currentTile) => {
+  let tileArray = [];
+  return tileArray;
+}
+
 const fireball = new Spell('Fireball', 'fire', {AP: 3, MP: 0, WP: 0}, 10, 3, 7, true, false, false, true, true, undefined);
 console.log(fireball)
 const doMath = () => {
