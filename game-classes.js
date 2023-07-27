@@ -1,3 +1,4 @@
+import tombFloor from 'assets/tomb_0_old.png';
 export class Entity {
   constructor(name, sprite) {
     this.name = name;
@@ -13,10 +14,10 @@ export class Entity {
 export class TileFactory {
   createTile(contents, x, y, edges, texture) {
     return {
-      contents: [],
-      coordinates: [],
-      edges: [],
-      texture: 'image_url',
+      contents: contents,
+      coordinates: [x, y],
+      edges: edges,
+      texture: texture,
     }
   }
 }
@@ -28,13 +29,14 @@ export class GameFramework {
   tileFactory;
   isInCombat = false;
   combatMap =  undefined;
-
+  mapWidth = 10;
+  mapHeight = 10;
   generateMap() {
     //should randomly generate an encounter map
     combatMap = undefined;
-    for (let x = 0; x <= inputX - 1; x++) {// define inputs
-      for (let y = 0;  x <= inputY - 1; y++) {
-        TileFactory.createTile('contents', x, y, [], 'google.com');
+    for (let x = 0; x <= mapWidth - 1; x++) {// define inputs
+      for (let y = 0;  x <= mapHeight - 1; y++) {
+        this.tileFactory.createTile([], x, y, [], tombFloor);
         //check what a given tile should be. Might need to read adjacent tiles for structure or chance. Or read from presets?
       }
     }
