@@ -49,7 +49,15 @@ Both stances could have an ammo / shells mechanic. Stack shells, next spell cast
 
 #### Spells
 
+##### Primal
 
+Should include most direct blast stuff for class, damage oriented
+##### Machine
+
+Unrelated to weapon, is gadgets and ammo
+##### Decay
+
+Should include indirect, debuff, durability
 
 #### Passives
 

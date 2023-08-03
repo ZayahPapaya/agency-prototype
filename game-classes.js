@@ -26,21 +26,47 @@ export class GameFramework {
     this.tileFactory = new TileFactory();
   }
   
-  tileFactory;
+  tiles = [];
   isInCombat = false;
-  combatMap =  undefined;
   mapWidth = 10;
   mapHeight = 10;
   generateMap() {
     //should randomly generate an encounter map
-    combatMap = undefined;
     for (let x = 0; x <= mapWidth - 1; x++) {// define inputs
       for (let y = 0;  x <= mapHeight - 1; y++) {
-        this.tileFactory.createTile([], x, y, [], tombFloor);
-        //check what a given tile should be. Might need to read adjacent tiles for structure or chance. Or read from presets?
+        const tile = this.tileFactory.createTile([], x, y, new Set(), tombFloor);
+        this.tiles.push(tile);
+        const left = [x - 1, y];
+        const right = [x + 1, y];
+        const up = [x, y + 1];
+        const down = [x, y - 1];
+        for (let coord of [left, right, up, down]) {
+          const neighbor = this.getTile(coord);
+          if(!neighbor) {
+            continue;
+          }
+          this.addEdge(tile, neighbor);
+        }
       }
     }
-    this.combatMap = 'tbd';
-  }
+  };
 
-}
+  addEdge(a, b) {
+    a.edges.add(b);
+    b.edges.add(a);
+  };
+
+  getTile(coord) {
+    for (const tile of this.tiles) {
+      if (this.compareCoord(coord, tile.position)) {
+        return tile;
+      }
+    }
+    return undefined;
+  };
+
+  compareCoord(a, b) {
+    return a[0] === b[0] && a[1] === b[1];
+  };
+
+};
