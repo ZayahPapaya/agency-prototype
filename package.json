@@ -1,0 +1,24 @@
+{
+  "name": "agency-prototype",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Prototype for personal video game",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZayahPapaya/agency-prototype.git"
+  },
+  "author": "Zayah Lang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZayahPapaya/agency-prototype/issues"
+  },
+  "homepage": "https://github.com/ZayahPapaya/agency-prototype#readme",
+  "dependencies": {
+    "jest": "^29.6.2",
+    "supertest": "^6.3.3"
+  }
+}
