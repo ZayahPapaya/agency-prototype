@@ -1,5 +1,5 @@
 //import { describe, it, expect } from "node:test";
-const { GameFramework, Entity } = require("../classes/GameFramework");
+const { GameFramework, Entity } = require("../classes/gameFramework");
 
 describe('Map functionality', () => {
   const map = new GameFramework();

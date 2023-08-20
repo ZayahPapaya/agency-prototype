@@ -45,7 +45,7 @@ class Spell {
       directionalBonus = 10;
     };
     // casterMastery should be a method that checks for what masteries should apply
-    return Math.round(baseDamage * (1 + casterMastery / 100) * (1 + finalDamage / 100) * (1 + directionalBonus / 100) * (1 - Math.round(Math.pow(0.8, (mobResist/100))* 100) / 100));
+    return Math.round(baseDamage * (1 + casterMastery / 100) * (1 + finalDamage / 100) * (1 + directionalBonus / 100) * (1 - Math.round(Math.pow(0.8, (mobResist/100))* 100) / 100)); // TODO: include res% in charsheet / entity to avoid repeating the power calculation
   }
   // check for conditions
   // check for critical chance
@@ -58,11 +58,13 @@ class Spell {
   // area templates should be functions that calculate an area based off the target position
 }
 
-const burstTemplate = (currentTile) => {
+const burstTemplate = (currentTile) => {//TODO: either determine a better method or rely on Unity collisions later
   let tileArray = [];
   return tileArray;
 }
 
+// TODO: make individual spells as extensions of the Spell class
+// TODO: include a spell-set of these for each class to read when generating
 const fireball = new Spell('Fireball', 'fire', {AP: 3, MP: 0, WP: 0}, 10, 3, 7, true, false, false, true, true, undefined);
 console.log(fireball)
 const doMath = () => {
@@ -75,3 +77,7 @@ const logThings = () => {
 fireball.addFunction(doMath);
 fireball.addFunction(logThings);
 fireball.orchestrate();
+
+module.exports = {
+  Spell,
+}
