@@ -4,9 +4,27 @@ class CharacterSheet {
     classApplier(classChosen, this);
   }
   baseHealth = null; // integer
+  totalHealth = (this.baseHealth + this.stats.flatHealth) * this.level;
+
+  level = 1;
+  stats = {
+    percentHealth: 0,
+    resistance: 0,
+    healsRecieved: 0,
+    barrier: 0,
+
+    genericMastery: 0,
+    singleTargetMastery: 0,
+    areaMastery: 0,
+    distanceMastery: 0,
+    meleeMastery: 0,
+    flatHealth: 0,
+  };
+
   spellbook = null; // set of spell objects
   passives = null; // set of passive objects
   classPassive = null; // object
+
   aFunction() {
   }
 
@@ -30,11 +48,12 @@ const classApplier = (classChosen, sheet) => {
   switch (classChosen) {
     case 'Artillerist':
       console.log('Artillerist chosen');
-      //sheet.baseHealth = 12;
+      sheet.baseHealth = 15;
       // applies base HP, passives, spell list, and class passive
       break;
-    case 'Druid':
-      console.log('Druid chosen');
+    case 'Gargoyle':
+      console.log('Gargoyle chosen');
+      sheet.baseHealth = 20;
       break;
     default:
       console.log('No class chosen?');

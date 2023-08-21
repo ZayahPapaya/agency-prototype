@@ -1,21 +1,22 @@
 class Spell {
-  constructor(spellName, damageElement, cost, baseDamage, minRange, maxRange, rangeIsModifiable, isLine, isDiagonal, requiresLineOfSight, isArea, areaTemplate) {
-    this.functions = [];
-    this.name = spellName;
-    this.element = damageElement;
-    this.cost = cost;
-    this.baseDamage = baseDamage;
-    this.minRange = minRange;
-    this.maxRange = maxRange;
-    this.rangeIsModifiable = rangeIsModifiable;
-    this.isLine = isLine;
-    this.isDiagonal = isDiagonal;
-    this.requiresLineOfSight = requiresLineOfSight;
-    this.isArea = isArea;
-    this.areaTemplate = areaTemplate || null;
-    this.currentTile = undefined;
+  constructor(caster) {
+    this.caster = caster;
   }
-  
+  functions = [];
+  name = undefined;
+  element = undefined;
+  costAP = undefined;
+  costMP = undefined;
+  costWP = undefined;
+  baseDamage  = undefined;
+  minRange = undefined;
+  maxRange =  undefined;
+  rangeIsModifiable = undefined;
+  isLine = undefined;
+  isDiagonal = undefined;
+  requiresLineOfSight = undefined;
+  isArea = undefined;
+
   addFunction(fn) {
     if (typeof fn === "function") {
       this.functions.push(fn);
@@ -63,20 +64,8 @@ const burstTemplate = (currentTile) => {//TODO: either determine a better method
   return tileArray;
 }
 
-// TODO: make individual spells as extensions of the Spell class
 // TODO: include a spell-set of these for each class to read when generating
-const fireball = new Spell('Fireball', 'fire', {AP: 3, MP: 0, WP: 0}, 10, 3, 7, true, false, false, true, true, undefined);
-console.log(fireball)
-const doMath = () => {
-  return 2 + 2;
-};
-const logThings = () => {
-  console.log("extra console log");
-  return "string";
-};
-fireball.addFunction(doMath);
-fireball.addFunction(logThings);
-fireball.orchestrate();
+
 
 module.exports = {
   Spell,
